@@ -9,6 +9,7 @@ import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
 import entities.Contract;
 import entities.Installment;
 import services.ContractService;
+import services.PaypalService;
 
 public class Application {
 
@@ -34,7 +35,7 @@ public class Application {
 		System.out.print("Entre com o número de parcelas: ");
 		int n = sc.nextInt();
 		
-		ContractService contractService = new ContractService(null);
+		ContractService contractService = new ContractService(new PaypalService());
 		contractService.processContract(obj, n);
 		
 		System.out.println("parcelas: ");
