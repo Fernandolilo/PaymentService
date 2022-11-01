@@ -4,7 +4,11 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
+import javax.swing.text.html.HTMLDocument.HTMLReader.IsindexAction;
+
 import entities.Contract;
+import entities.Installment;
+import services.ContractService;
 
 public class Application {
 
@@ -27,6 +31,18 @@ public class Application {
 		
 		Contract obj = new Contract(number, data, totalValue);
 
+		System.out.print("Entre com o número de parcelas: ");
+		int n = sc.nextInt();
+		
+		ContractService contractService = new ContractService(null);
+		contractService.processContract(obj, n);
+		
+		System.out.println("parcelas: ");
+		
+		for(Installment installment: obj.getInstallments()) {
+			System.out.println(installment);
+		}
+		
 		sc.close();
 
 	}
